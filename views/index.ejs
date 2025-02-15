@@ -3,16 +3,19 @@
 
 <head>
     <title>QR Code Generator</title>
+    <link rel="shortcut icon" class="rounded" href="../Assets/favicon_io/apple-touch-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="../styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
 
 <body>
     <nav class="navbar w-100 navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
+           
             <a class="navbar-brand" href="/">QR Code Maker</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            <button class="navbar-toggler btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,6 +57,7 @@
 
         <% if (qrCodeUrl) { %>
             <img src="<%= qrCodeUrl %>" width="200px" alt="QR Code" class=" align-self-center"><br>
+            <p class="text-center">Qr Code Will Expire After 24 Hours</p>
             <a href="<%= qrCodeUrl %>" class="btn btn-primary align-self-center w-50" download="qrcode.png">Download QR Code</a>
             <% } %>
     </div>
