@@ -27,6 +27,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 app.set('view engine', 'ejs'); // Set EJS as the view engine
+app.set('views', './views');
 app.use(express.static(path.join(__dirname, 'public'))) // Serve static files (CSS, etc.)
 app.use(express.urlencoded({ extended: true })); // Handle form data with increased limit
 
