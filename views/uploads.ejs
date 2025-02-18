@@ -36,7 +36,7 @@
     </nav>
     <div class="container d-flex flex-column mt-4 p-4">
 
-        <% if (file.contentType=="image/jpeg" ) { %>
+        <% if (file.contentType=="image/jpeg" ||file.contentType=="image/png" ) { %>
             <img src="<%=file.path%>" class="w-100" alt="error">
             <a href="<%=file %>" class="btn mt-3 btn-primary align-self-center w-50"
                 download="<%=file.filename%>.png">Download QR Code</a>

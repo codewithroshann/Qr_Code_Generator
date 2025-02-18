@@ -47,6 +47,7 @@ app.post('/generate', upload.single("file"), async (req, res) => {
                 contentType: req.file.mimetype,
             });          
             await newFile.save();
+            console.log(newFile)
             const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
             qrCodeFile = fileUrl;
         }
@@ -57,7 +58,9 @@ app.post('/generate', upload.single("file"), async (req, res) => {
             return res.status(400).send('No data provided');
         }
         const inputData = qrCodeFile ? qrCodeFile : qrCodeText;
+     
         const qrCodeUrl = await QRCode.toDataURL(inputData);
+       
        res.render('index', { qrCodeUrl }); // Re-render index.ejs with QR code URL
 
     } catch (error) {
