@@ -38,8 +38,7 @@
     <div class="container d-flex flex-column mt-4 p-4">
 
         <h1 class="text-center">QR Code Generator⚡</h1>
-
-        <form action="/generate" method="post" enctype="multipart/form-data">
+             <form action="/generate" method="post" enctype="multipart/form-data">
             <br>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Text/Links</label>
@@ -54,11 +53,12 @@
             <button type="submit " class="btn btn-success mt-3">Generate QR Code</button>
             <a href=""></a>
         </form>
-
+      
         <% if (qrCodeUrl) { %>
             <img src="<%= qrCodeUrl %>" width="200px" alt="QR Code" class=" align-self-center"><br>
             <p class="text-center">Qr Code Will Expire After 24 Hours</p>
             <a href="<%= qrCodeUrl %>" class="btn btn-primary align-self-center w-50" download="qrcode.png">Download QR Code</a>
+       
             <% } %>
     </div>
 

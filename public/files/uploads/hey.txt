@@ -1,0 +1,1 @@
+this web app is a qr code generator

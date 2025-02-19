@@ -10,7 +10,7 @@ const multer = require('multer');
 const dotenv = require('dotenv');
 const fs = require('fs');
 dotenv.config()
-const port = process.env.PORT ||5000;
+const port = process.env.PORT || 5000;
 
 //multer 
 const storage = multer.diskStorage({
@@ -37,47 +37,51 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/generate', upload.single("file"), async (req, res) => {
-     try {
-        let qrCodeFile;
-        let qrCodeText;
-        if (req.file) {
-            const newFile = new fileSchema({
-                filename: req.file.filename,
-                path: `../files/uploads/${req.file.filename}`,
+ 
+    try {
+           
+            let qrCodeFile;
+            let qrCodeText;
+            if (req.file) {
+                const newFile = new fileSchema({
+                    filename: req.file.filename,
+                    path: `../files/uploads/${req.file.filename}`,
                 contentType: req.file.mimetype,
-            });          
+            });
             await newFile.save();
             console.log(newFile)
             const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
             qrCodeFile = fileUrl;
         }
         else if (req.body.text) { // text upload
-           qrCodeText = await req.body.text;
+            qrCodeText = await req.body.text;
         } // Text input
         else {
             return res.status(400).send('No data provided');
         }
-        const inputData = qrCodeFile ? qrCodeFile : qrCodeText;
-     
-        const qrCodeUrl = await QRCode.toDataURL(inputData);
-       
-       res.render('index', { qrCodeUrl }); // Re-render index.ejs with QR code URL
 
+        const inputData = qrCodeFile ? qrCodeFile : qrCodeText;
+              const qrCodeUrl = await QRCode.toDataURL(inputData);
+              
+              res.render('index', { qrCodeUrl}); // Re-render index.ejs with QR code URL
+        
     } catch (error) {
         console.error("Error generating QR code:", error);
         res.status(500).send('Failed to generate QR code');
     }
-    setTimeout( async () => {
-        try{
-            fs.unlink(`${req.file.path}`,(err)=>{
+
+    setTimeout(async () => {
+        try {
+            fs.unlink(`${req.file.path}`, (err) => {
                 console.log(err)
             })
-            const file =  await fileSchema.findOneAndDelete({ filename: req.file.filename })
-            console.log(file,"file deleted")
-        }catch(err){
+            const file = await fileSchema.findOneAndDelete({ filename: req.file.filename })
+            console.log(file, "file deleted")
+        } catch (err) {
             console.log("somthing went wrong")
         }
-     }, 86400000);
+    }, 86400000);
+  
 
 });
 
@@ -87,7 +91,7 @@ app.get('/uploads/:filename', async (req, res) => {
     if (!file) {
         return res.status(404).send('File not found');
     }
-   res.render('uploads', { file: file });
+    res.render('uploads', { file: file });
 
 })
 
@@ -96,5 +100,4 @@ app.get('/uploads/:filename', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
-
 
