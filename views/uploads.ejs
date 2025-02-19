@@ -13,39 +13,39 @@
     <nav class="navbar w-100 navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">QR Code Maker</a>
-           <a href="/" type="button" class="btn btn-warning"> Back To Home</a>
-            
-         
+            <a href="/" type="button" class="btn btn-warning"> Back To Home</a>
+
+
         </div>
     </nav>
     <div class="container d-flex flex-column mt-4 p-4">
 
-        <% if (file.contentType=="image/jpeg" ||file.contentType=="image/png" ) { %>
+        <% if (file.contentType=="image/png" ||file.contentType=="image/jpeg" ) { %>
             <img src="<%=file.path%>" class="w-100" alt="error">
-            <a href="<%=file.filename %>" class="btn mt-3 btn-primary align-self-center w-50"
-                download="<%=file._id%>.png">Download</a>
+            <a href="<%=file.path %>" class="btn mt-3 btn-primary align-self-center w-50"
+                download="image.png">Download</a>
 
             <% } %>
+
                 <% if (file.contentType=="video/mp4" ) { %>
                     <video controls autoplay src="<%=file.path%>" class="w-80"></video>
 
                     <% } %>
                         <% if (file.contentType=="text/plain" ){ %>
                             <iframe src="<%=file.path%>" frameborder="0" height="350px" class=""></iframe>
-                            <a href="<%=file.filename%>" class="btn btn-primary w-50 mt-3 align-self-center"
+                            <a href="<%=file.path%>" class="btn btn-primary w-50 mt-3 align-self-center"
                                 download="<%=file._id%>.txt"> Download</a>
                             <% } %>
                                 <% if (file.contentType=="application/pdf" ){ %>
                                     <iframe src="<%=file.path%>" frameborder="0" height="500px"></iframe>
-                                    <a href="<%=file.filename%>" class="btn btn-primary w-50 mt-3 align-self-center"
+                                    <a href="<%=file.path%>" class="btn btn-primary w-50 mt-3 align-self-center"
                                         download="<%=file._id%>.pdf"> Download</a>
 
 
                                     <% } %>
                                         <% if (file.contentType=="application/msword" ){ %>
                                             <iframe src="<%=file.path%>" frameborder="0" height="500px"></iframe>
-                                            <a href="<%=file.filename%>"
-                                                class="btn btn-primary w-50 mt-3 align-self-center"
+                                            <a href="<%=file.path%>" class="btn btn-primary w-50 mt-3 align-self-center"
                                                 download="<%=file._id%>.doc"> Download</a>
 
                                             <% } %>
@@ -54,7 +54,7 @@
                                                         class="align-self-center">
                                                         <source src="<%=file.path%>" type="audio/mpeg">
                                                     </audio>
-                                                    <a href="<%=file.filename%>"
+                                                    <a href="<%=file.path%>"
                                                         class="btn btn-primary w-50 mt-3 align-self-center"
                                                         download="<%=file._id%>.mp3"> Download</a>
 
