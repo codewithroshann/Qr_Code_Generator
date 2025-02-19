@@ -22,7 +22,7 @@
 
         <% if (file.contentType=="image/jpeg" ||file.contentType=="image/png" ) { %>
             <img src="<%=file.path%>" class="w-100" alt="error">
-            <a href="<%=file %>" class="btn mt-3 btn-primary align-self-center w-50"
+            <a href="<%=file.filename %>" class="btn mt-3 btn-primary align-self-center w-50"
                 download="<%=file._id%>.png">Download</a>
 
             <% } %>
