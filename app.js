@@ -70,17 +70,18 @@ app.post('/generate', upload.single("file"), async (req, res) => {
         res.status(500).send('Failed to generate QR code');
     }
 
-    setTimeout(async () => {
-        try {
-            fs.unlink(`${req.file.path}`, (err) => {
-                console.log(err)
-            })
-            const file = await fileSchema.findOneAndDelete({ filename: req.file.filename })
-            console.log(file, "file deleted")
-        } catch (err) {
-            console.log("somthing went wrong")
-        }
-    }, 86400000);
+    // FILE EXPIRE FUNCTION----
+    // setTimeout(async () => {
+    //     try {
+    //         fs.unlink(`${req.file.path}`, (err) => {
+    //             console.log(err)
+    //         })
+    //         const file = await fileSchema.findOneAndDelete({ filename: req.file.filename })
+    //         console.log(file, "file deleted")
+    //     } catch (err) {
+    //         console.log("somthing went wrong")
+    //     }
+    // }, 86400000);
   
 
 });
