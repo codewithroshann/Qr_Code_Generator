@@ -37,15 +37,14 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/generate', upload.single("file"), async (req, res) => {
- 
+
     try {
-           
-            let qrCodeFile;
-            let qrCodeText;
-            if (req.file) {
-                const newFile = new fileSchema({
-                    filename: req.file.filename,
-                    path: `../files/uploads/${req.file.filename}`,
+        let qrCodeFile;
+        let qrCodeText;
+        if (req.file) {
+            const newFile = new fileSchema({
+                filename: req.file.filename,
+                path: `../files/uploads/${req.file.filename}`,
                 contentType: req.file.mimetype,
             });
             await newFile.save();
@@ -61,41 +60,37 @@ app.post('/generate', upload.single("file"), async (req, res) => {
         }
 
         const inputData = qrCodeFile ? qrCodeFile : qrCodeText;
-              const qrCodeUrl = await QRCode.toDataURL(inputData);
-              
-              res.render('index', { qrCodeUrl}); // Re-render index.ejs with QR code URL
-        
+        const qrCodeUrl = await QRCode.toDataURL(inputData);
+
+        res.render('index', { qrCodeUrl }); // Re-render index.ejs with QR code URL
+
     } catch (error) {
         console.error("Error generating QR code:", error);
         res.status(500).send('Failed to generate QR code');
     }
 
-    // FILE EXPIRE FUNCTION----
-    // setTimeout(async () => {
-    //     try {
-    //         fs.unlink(`${req.file.path}`, (err) => {
-    //             console.log(err)
-    //         })
-    //         const file = await fileSchema.findOneAndDelete({ filename: req.file.filename })
-    //         console.log(file, "file deleted")
-    //     } catch (err) {
-    //         console.log("somthing went wrong")
-    //     }
-    // }, 86400000);
-  
+
+
 
 });
 
 
 app.get('/uploads/:filename', async (req, res) => {
-    const file = await fileSchema.findOne({ filename: req.params.filename })
-    if (!file) {
-        return res.status(404).send('File not found');
+    try {
+        const file = await fileSchema.findOne({ filename: req.params.filename })
+        console.log(file.filename)
+        if (!file) {
+            return res.status(404).send('File not found');
+        }
+
+        res.render('uploads', { file: file });
+    
+    } catch (error) {
+        console.error("Error generating QR code:", error);
+        res.status(500).send('Failed to generate QR code');
     }
-    res.render('uploads', { file: file });
 
 })
-
 
 
 app.listen(port, () => {
