@@ -48,8 +48,7 @@ app.post('/generate', upload.single("file"), async (req, res) => {
                 contentType: req.file.mimetype,
             });
             await newFile.save();
-            console.log(newFile)
-            const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+           const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
             qrCodeFile = fileUrl;
         }
         else if (req.body.text) { // text upload
@@ -78,7 +77,7 @@ app.post('/generate', upload.single("file"), async (req, res) => {
 app.get('/uploads/:filename', async (req, res) => {
     try {
         const file = await fileSchema.findOne({ filename: req.params.filename })
-        console.log(file.filename)
+    
         if (!file) {
             return res.status(404).send('File not found');
         }
