@@ -9,10 +9,19 @@ const app = express();
 const multer = require('multer');
 const dotenv = require('dotenv');
 const fs = require('fs');
+const cloudinary = require('cloudinary').v2
 dotenv.config()
 const port = process.env.PORT || 5000;
 
-//multer 
+
+// Configuration
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+});
+
+//multer SETUP 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/files/uploads')
@@ -36,19 +45,32 @@ app.get('/', async (req, res) => {
 
 });
 
+// QR GENERETE ROUTE
+
 app.post('/generate', upload.single("file"), async (req, res) => {
 
     try {
         let qrCodeFile;
         let qrCodeText;
+
         if (req.file) {
+            console.log( "thatsme" , req.file)
+            const uploadResult = await cloudinary.uploader.upload(req.file.path,{
+                resource_type: "auto" // 🔥 key for supporting all file types
+              })
+                .catch((error) => {
+                    console.log(error,"Somthing Went Wrong");
+                });
+
+            console.log("THIS IS ME",uploadResult);
+
             const newFile = new fileSchema({
                 filename: req.file.filename,
-                path: `../files/uploads/${req.file.filename}`,
+                link: uploadResult.secure_url,
                 contentType: req.file.mimetype,
             });
             await newFile.save();
-           const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+            const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
             qrCodeFile = fileUrl;
         }
         else if (req.body.text) { // text upload
@@ -68,22 +90,29 @@ app.post('/generate', upload.single("file"), async (req, res) => {
         res.status(500).send('Failed to generate QR code');
     }
 
-
-
-
+    fs.unlink(`${req.file.path}`, (err) => {
+        if (err) throw err;
+        console.log('successfully deleted !');
+      });
 });
 
+
+//File View Route
 
 app.get('/uploads/:filename', async (req, res) => {
     try {
         const file = await fileSchema.findOne({ filename: req.params.filename })
-    
+        const link = await file.link.indexOf("/upload/") +8;
+        let insertString = "fl_attachment/";
+        let newUrl = file.link.slice(0, link) + insertString + file.link.slice(link);
+      console.log("newurl",newUrl,file)
+
         if (!file) {
             return res.status(404).send('File not found');
         }
 
-        res.render('uploads', { file: file });
-    
+        res.render('uploads', { file: file, qrCodeUrl: newUrl });
+
     } catch (error) {
         console.error("Error generating QR code:", error);
         res.status(500).send('Failed to generate QR code');

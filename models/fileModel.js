@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGODB_URL)
 
 const fileSchema = mongoose.Schema({
     filename: String,
-    path: String, // Path to the file (can be local or URL if stored elsewhere)
+    link: String, // Path to the file (can be local or URL if stored elsewhere)
     contentType: String // Store the content type
 
 });
