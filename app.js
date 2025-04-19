@@ -89,11 +89,14 @@ app.post('/generate', upload.single("file"), async (req, res) => {
         console.error("Error generating QR code:", error);
         res.status(500).send('Failed to generate QR code');
     }
-
+if(req.file){
     fs.unlink(`${req.file.path}`, (err) => {
         if (err) throw err;
         console.log('successfully deleted !');
       });
+    }else{
+        return new Error("File Not Found")
+    }
 });
 
 
