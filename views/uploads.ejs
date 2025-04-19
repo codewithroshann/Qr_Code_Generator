@@ -21,7 +21,7 @@
     <div class="container d-flex flex-column mt-4 p-4">
 
         <% if (file.contentType=="image/png" ||file.contentType=="image/jpeg" ) { %>
-            <img src="<%=file.link%>" class="w-100" alt="error">
+            <img src="<%=file.link%>" class="w-50 m-auto" alt="error">
             <a href="<%=qrCodeUrl %>" class="btn mt-3 btn-primary align-self-center w-50"
                 download="image.png">Download</a>
 
@@ -38,17 +38,22 @@
                                 download="<%=file._id%>.txt"> Download</a>
                             <% } %>
                                 <% if (file.contentType=='application/pdf' ){ %>
-                                    <iframe src="<%=file.link%>" title="file" width="100%" height="500px"></iframe>
-                                  
-                                    <a href="<%=qrCodeUrl%>" target="_blank" class="btn btn-primary w-50 mt-3 align-self-center"
-                                        download="<%=file._id%>.pdf"> Download</a>
+                                    <iframe src="<%=file.link%>" title="file" width="100%" height="550px"></iframe>
 
+                                    <a href="<%=qrCodeUrl%>" target="_blank"
+                                        class="btn btn-primary w-50 mt-3 align-self-center"
+                                        download="<%=file._id%>.pdf"> Download</a>
+                                    <div class="get-info mt-4 py-2">
+                                        <span class="fs-5 d-inline mr-2">Note:</span>
+                                        <p class="d-inline ms-2">If the pdf is not showing click on the download button
+                                        </p>
+
+                                    </div>
 
                                     <% } %>
                                         <% if (file.contentType=="application/msword" ){ %>
                                             <iframe src="<%=file.link%>" frameborder="0" height="500px"></iframe>
-                                            <a href="<%=qrCodeUrl%>"
-                                                class="btn btn-primary w-50 mt-3 align-self-center"
+                                            <a href="<%=qrCodeUrl%>" class="btn btn-primary w-50 mt-3 align-self-center"
                                                 download="<%=file._id%>.doc"> Download</a>
 
                                             <% } %>
@@ -66,21 +71,6 @@
 
 
     </div>
-    <!-- AD SECTION -->
-
-    <!-- <div class="ad d-flex align-items-center justify-content-center w-100">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '1089e0d25c6d58a97ffe80541801fa1a',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/1089e0d25c6d58a97ffe80541801fa1a/invoke.js"></script>
-        
-    </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

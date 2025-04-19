@@ -61,6 +61,18 @@
             <a href="<%= qrCodeUrl %>" class="btn btn-primary align-self-center w-50" download="qrcode.png">Download QR Code</a>
        
             <% } %>
+            <% if (!qrCodeUrl) { %>
+
+            <div class="info py-5">
+            <span class="fs-5">Note:</span>
+            <ul class="mt-2">
+                <li>Max Image Size :10MB</li>
+                <li>Max Video Size :100MB</li>
+                <li>Max Raw File (pdf,docx,etc) Size :10MB</li>
+            </ul>
+            </div>
+               
+            <% } %>
     </div>
   
   
