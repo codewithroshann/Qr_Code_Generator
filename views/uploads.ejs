@@ -40,7 +40,7 @@
                                 <% if (file.contentType=='application/pdf' ){ %>
                                     <iframe src="<%=file.link%>" title="file" width="100%" height="500px"></iframe>
                                   
-                                    <a href="<%=file.link%>" class="btn btn-primary w-50 mt-3 align-self-center"
+                                    <a href="<%=qrCodeUrl%>" target="_blank" class="btn btn-primary w-50 mt-3 align-self-center"
                                         download="<%=file._id%>.pdf"> Download</a>
 
 
