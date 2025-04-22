@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 let resultHtmlElement = document.createElement('div');
                 resultHtmlElement.classList.add('d-flex', 'justify-content-center', 'link-container', 'flex-column', 'mt-3', 'w-100');
-                resultHtmlElement.innerHTML = `<p class="mt-4 align-self-center">${decodedText}</p> <a type="button" href="${decodedText}" target="_blank" class="btn btn-warning open-btn w-50 mt-4 align-self-center">Open <i class="fa-solid ms-2 fa-arrow-up-right-from-square" "></i></a>`;
+                resultHtmlElement.innerHTML = ` <a type="button" href="${decodedText}" target="_blank" class="btn btn-warning open-btn w-50 mt-4 align-self-center">Open <i class="fa-solid ms-2 fa-arrow-up-right-from-square" "></i></a>`;
                 resultContainer.appendChild(resultHtmlElement);
 
             }
