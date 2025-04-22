@@ -54,15 +54,15 @@ app.post('/generate', upload.single("file"), async (req, res) => {
         let qrCodeText;
 
         if (req.file) {
-            console.log( "thatsme" , req.file)
-            const uploadResult = await cloudinary.uploader.upload(req.file.path,{
+            console.log("thatsme", req.file)
+            const uploadResult = await cloudinary.uploader.upload(req.file.path, {
                 resource_type: "auto" // 🔥 key for supporting all file types
-              })
+            })
                 .catch((error) => {
-                    console.log(error,"Somthing Went Wrong");
+                    console.log(error, "Somthing Went Wrong");
                 });
 
-            console.log("THIS IS ME",uploadResult);
+            console.log("THIS IS ME", uploadResult);
 
             const newFile = new fileSchema({
                 filename: req.file.filename,
@@ -89,15 +89,22 @@ app.post('/generate', upload.single("file"), async (req, res) => {
         console.error("Error generating QR code:", error);
         res.status(500).send('Failed to generate QR code');
     }
-if(req.file){
-    fs.unlink(`${req.file.path}`, (err) => {
-        if (err) throw err;
-        console.log('successfully deleted !');
-      });
-    }else{
+    if (req.file) {
+        fs.unlink(`${req.file.path}`, (err) => {
+            if (err) throw err;
+            console.log('successfully deleted !');
+        });
+    } else {
         return new Error("File Not Found")
     }
 });
+
+
+//QR CODE SCANNER ROUTE
+
+app.get('/scanner',(req,res)=>{
+    res.render('qrScanner')
+})
 
 
 //File View Route
@@ -105,10 +112,10 @@ if(req.file){
 app.get('/uploads/:filename', async (req, res) => {
     try {
         const file = await fileSchema.findOne({ filename: req.params.filename })
-        const link = await file.link.indexOf("/upload/") +8;
+        const link = await file.link.indexOf("/upload/") + 8;
         let insertString = "fl_attachment/";
         let newUrl = file.link.slice(0, link) + insertString + file.link.slice(link);
-      console.log("newurl",newUrl,file)
+        console.log("newurl", newUrl, file)
 
         if (!file) {
             return res.status(404).send('File not found');

@@ -4,6 +4,8 @@
 
 html,body{
     font-family: "Poppins", serif !important;
+    min-height: 100dvh;
+    position: relative;
 }
 #qrcode {
     margin-top: 20px;
@@ -45,4 +47,44 @@ button:hover {
 
 #file-name { /* Display selected file name */
     margin-top: 5px;
+}
+.row a{
+    color: var(--bs-navbar-brand-color);
+    text-decoration: none;
+}
+
+.qr-container{
+    min-height: 350px;
+}
+
+/* Sccaner css */
+.html5-qrcode-element{
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 20px;
+
+}
+#qr-reader__scan_region canvas{
+    height: 100% !important;
+    width: 100% !important;
+}
+#html5-qrcode-anchor-scan-type-change{
+    background: var(--bs-primary);
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none !important;
+    font-weight: 400;
+}
+
+@media (max-width:1080px) {
+    #qr-reader{
+        width: 450px !important;
+    }
+    
+}
+@media (max-width:450px) {
+    #qr-reader{
+        width: 350px !important;
+    }
+    
 }
