@@ -56,7 +56,7 @@ button:hover {
 .qr-container{
     min-height: 350px;
 }
-.active{
+.nav-active{
     background-color: rgb(235, 235, 235) !important;
 }
 .bg-color{
