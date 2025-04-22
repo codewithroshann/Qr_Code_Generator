@@ -56,6 +56,12 @@ button:hover {
 .qr-container{
     min-height: 350px;
 }
+.active{
+    background-color: rgb(235, 235, 235) !important;
+}
+.bg-color{
+    background-color: var(--bs-tertiary-bg-rgb);
+}
 
 /* Sccaner css */
 .html5-qrcode-element{

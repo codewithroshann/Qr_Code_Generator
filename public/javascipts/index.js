@@ -1,9 +1,8 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     let resultContainer = document.getElementById('qr-reader-results');
-
-
     var lastResult, countResults = 0;
+    let navBtn = document.querySelectorAll('.nav-btn')
 
     function onScanSuccess(decodedText, decodedResult) {
         let openBtn = document.querySelector('.link-container');
@@ -23,10 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
-            console.log(`Scan result `,decodedResult);
-        }1
+            console.log(`Scan result `, decodedResult);
+        } 1
     }
 
     var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
     html5QrcodeScanner.render(onScanSuccess);
+
+
+
 });
