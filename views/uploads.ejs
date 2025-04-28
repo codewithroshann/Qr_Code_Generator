@@ -38,7 +38,9 @@
                                 download="<%=file._id%>.txt"> Download</a>
                             <% } %>
                                 <% if (file.contentType=='application/pdf' ){ %>
-                                    <iframe src="<%=file.link%>" title="file" width="100%" height="550px"></iframe>
+                                    <!-- <iframe src="<%=file.link%>" title="file" width="100%" height="600px"></iframe> -->
+                                    <iframe src="https://docs.google.com/gview?url=<%=file.link%>&embedded=true"
+                                        style="width:100%; height:100%;" frameborder="0"></iframe>
 
                                     <a href="<%=qrCodeUrl%>" target="_blank"
                                         class="btn btn-primary w-50 mt-3 align-self-center"
@@ -71,11 +73,13 @@
 
 
     </div>
-       <!-- FOOTER NAVIGATION -->
-  <div class="row position-fixed bottom-0 w-100 bg-body-tertiary px-4 py-3 align-items-center justify-content-center">
-    <a href="/" class="col d-flex justify-content-center w-100"> <i class="fa-solid fs-3 fa-house"></i></a>
-    <a href="/scanner" class="col border-start border-2 border-secondary-subtle d-flex justify-content-center w-100"><i class="fa-solid fs-3 fa-qrcode"></i></a>
-</div>
+    <!-- FOOTER NAVIGATION -->
+    <div class="row position-fixed bottom-0 w-100 bg-body-tertiary px-4 py-3 align-items-center justify-content-center">
+        <a href="/" class="col d-flex justify-content-center w-100"> <i class="fa-solid fs-3 fa-house"></i></a>
+        <a href="/scanner"
+            class="col border-start border-2 border-secondary-subtle d-flex justify-content-center w-100"><i
+                class="fa-solid fs-3 fa-qrcode"></i></a>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
