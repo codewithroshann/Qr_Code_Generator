@@ -22,7 +22,7 @@
 
         </div>
     </nav>
-    <div class="container d-flex flex-column mt-4 p-4" style="height: 100dvh;">
+    <div class=" d-flex flex-column mt-4" style="height: 100dvh;">
 
         <% if (file.contentType=="image/png" ||file.contentType=="image/jpeg" ) { %>
             <img src="<%=file.link%>" class="w-50 m-auto" alt="error">
@@ -51,7 +51,7 @@
                                         download="<%=downloadName%>.pdf">
                                         Download</a>
 
-                                    <div class="get-info mt-4 mb-5 py-2">
+                                    <div class="get-info mt-4 mb-5 py-2 px-4">
                                         <span class="fs-5 d-inline mr-2">Note:</span>
                                         <p class="d-inline ms-2">If the pdf is not showing Please Refresh the page or click on the download button
                                         </p>
@@ -80,7 +80,7 @@
 
     </div>
     <!-- FOOTER NAVIGATION -->
-    <footer class="row position-fixed bottom-0 w-100 bg-body-tertiary px-4 py-3 align-items-center justify-content-center">
+    <footer class="row position-fixed bottom-0 w-100 bg-body-tertiary px-4 py-2 align-items-center justify-content-center">
         <a href="/" class="col d-flex justify-content-center w-100"> <i class="fa-solid fs-3 fa-house"></i></a>
         <a href="/scanner"
             class="col border-start border-2 border-secondary-subtle d-flex justify-content-center w-100"><i
