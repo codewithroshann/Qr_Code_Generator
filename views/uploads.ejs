@@ -18,7 +18,7 @@
 
         </div>
     </nav>
-    <div class="container d-flex flex-column mt-4 p-4">
+    <div class="container d-flex flex-column mt-4 p-4" style="height: 100dvh;">
 
         <% if (file.contentType=="image/png" ||file.contentType=="image/jpeg" ) { %>
             <img src="<%=file.link%>" class="w-50 m-auto" alt="error">
@@ -40,11 +40,12 @@
                                 <% if (file.contentType=='application/pdf' ){ %>
                                     <!-- <iframe src="<%=file.link%>" title="file" width="100%" height="600px"></iframe> -->
                                     <iframe src="https://docs.google.com/gview?url=<%=file.link%>&embedded=true"
-                                        style="width:100%; height:100dvh;" frameborder="0"></iframe>
+                                        style="width:100%; height:90%;" frameborder="0"></iframe>
 
                                     <a href="<%=qrCodeUrl%>" target="_blank"
-                                        class="btn btn-primary w-50 mt-3 align-self-center"
-                                        download="<%=file._id%>.pdf"> Download</a>
+                                        class="btn btn-primary w-50 mt-3 align-self-center" download="MyDocument.pdf">
+                                        Download</a>
+
                                     <div class="get-info mt-4 py-2">
                                         <span class="fs-5 d-inline mr-2">Note:</span>
                                         <p class="d-inline ms-2">If the pdf is not showing click on the download button
@@ -56,7 +57,7 @@
                                         <% if (file.contentType=="application/msword" ){ %>
                                             <iframe src="<%=file.link%>" frameborder="0" height="500px"></iframe>
                                             <a href="<%=qrCodeUrl%>" class="btn btn-primary w-50 mt-3 align-self-center"
-                                                download="<%=file._id%>.doc"> Download</a>
+                                                download="<%=MyDocx%>.doc"> Download</a>
 
                                             <% } %>
                                                 <% if (file.contentType=="audio/mpeg" ){ %>
