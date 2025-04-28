@@ -30,12 +30,12 @@
                 <% if (file.contentType=="video/mp4" ) { %>
                     <video controls autoplay src="<%=file.link%>" class="w-80"></video>
                     <a href="<%=qrCodeUrl %>" class="btn mt-3 btn-primary align-self-center w-50"
-                        download="video.mp4">Download</a>
+                        download="MyVideo.mp4">Download</a>
                     <% } %>
                         <% if (file.contentType=="text/plain" ){ %>
                             <iframe src="<%=file.link%>" frameborder="0" height="350px" class=""></iframe>
                             <a href="<%=qrCodeUrl %>" class="btn btn-primary w-50 mt-3 align-self-center"
-                                download="<%=file._id%>.txt"> Download</a>
+                                download="MyText.txt"> Download</a>
                             <% } %>
                                 <% if (file.contentType=='application/pdf' ){ %>
                                     <!-- <iframe src="<%=file.link%>" title="file" width="100%" height="600px"></iframe> -->
@@ -67,7 +67,7 @@
                                                     </audio>
                                                     <a href="<%=qrCodeUrl%>"
                                                         class="btn btn-primary w-50 mt-3 align-self-center"
-                                                        download="<%=file._id%>.mp3"> Download</a>
+                                                        download="<%=MyAudio%>.mp3"> Download</a>
 
                                                     <% } %>
 
