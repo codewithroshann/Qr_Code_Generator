@@ -112,6 +112,7 @@ app.get('/scanner',(req,res)=>{
 app.get('/uploads/:filename', async (req, res) => {
     try {
         const file = await fileSchema.findOne({ filename: req.params.filename })
+      
         const link = await file.link.indexOf("/upload/") + 8;
         let insertString = "fl_attachment/";
         let newUrl = file.link.slice(0, link) + insertString + file.link.slice(link);
@@ -121,7 +122,7 @@ app.get('/uploads/:filename', async (req, res) => {
             return res.status(404).send('File not found');
         }
 
-        res.render('uploads', { file: file, qrCodeUrl: newUrl });
+        res.render('uploads', { file: file, qrCodeUrl: newUrl,downloadName:"MyDocument" });
 
     } catch (error) {
         console.error("Error generating QR code:", error);

@@ -65,6 +65,10 @@ button:hover {
     background-color: var(--bs-tertiary-bg-rgb);
 }
 
+footer{
+    max-width: 1440px;
+}
+
 /* Sccaner css */
 .html5-qrcode-element{
     margin-bottom: 15px;
